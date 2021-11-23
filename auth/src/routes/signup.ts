@@ -15,9 +15,12 @@ router.post('/api/users/signup',
         }
     const {email, password} = req.body;
     console.log('Creating a user...', email, password);
-    res.send({email, password});
     throw new DatabaseConnectionError();
 }
 );
+
+router.get('/api/users/signup', (req, res) =>{
+    res.send('This is the signup API');
+});
 
 export {router as signupRouter};
