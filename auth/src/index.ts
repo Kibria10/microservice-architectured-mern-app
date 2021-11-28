@@ -1,8 +1,9 @@
 import express from 'express';
 import 'express-async-errors';
-import mongoose from 'mongoose';
+import mongoose, { ConnectOptions } from "mongoose";
 
-
+// import mongoose from 'mongoose';
+import { User } from './models/user';
 import { json } from 'body-parser';
 import { currentUserRouter } from './routes/current-user';
 import { signinRouter } from './routes/signin';
@@ -28,18 +29,20 @@ app.use(errorHandler);
 
 const start = async() => {
     try{
+        //
+        //mongodb://localhost/auth
     await mongoose.connect('mongodb://auth-mongo-srv:27017/auth', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useCreateIndex: true
-    });
+        // useCreateIndex: true
+    }as ConnectOptions);
     console.log('Connected to MongoDB');
     } catch(err) {
         console.log(err);
     }
 
     app.listen(3000, () => {
-        console.log('Listening to port 3000!');
+        console.log('Listening to port 3000!!!!');
     }); 
 };
 
