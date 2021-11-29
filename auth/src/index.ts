@@ -29,9 +29,9 @@ app.use(errorHandler);
 
 const start = async() => {
     try{
-        //
+        //mongodb://auth-mongo-srv:27017/auth
         //mongodb://localhost/auth
-    await mongoose.connect('mongodb://auth-mongo-srv:27017/auth', {
+    await mongoose.connect('mongodb://localhost/auth', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         // useCreateIndex: true
