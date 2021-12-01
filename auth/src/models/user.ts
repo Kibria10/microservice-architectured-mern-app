@@ -28,8 +28,18 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-  },
-});
+  }
+},
+  {
+    toJSON: {
+      transform(doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.password;
+        delete ret.__v;
+      }
+    }
+  });
 userSchema.pre("save", async function (done) {
   //isModified middlware is to prevent from hashing a pw which is already been hashed
   if (this.isModified("password")) {
