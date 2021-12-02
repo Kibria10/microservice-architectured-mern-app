@@ -5,6 +5,7 @@ import { User } from '../models/user';
 import { BadRequestError } from '../errors/bad-request-error';
 import { Password } from '../services/password';
 import jwt from 'jsonwebtoken';
+import { currentUser } from '../middlewares/current-user';
 const router = express.Router();
 
 router.post(
@@ -19,6 +20,7 @@ router.post(
             .withMessage('Password Must Be Supplied')
     ],
     validateRequest,
+    currentUser,
     async (req: Request, res: Response) => {
         const { email, password } = req.body;
 
