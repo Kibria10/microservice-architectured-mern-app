@@ -30,13 +30,14 @@ const userSchema = new mongoose.Schema({
     required: true,
   }
 },
+  //making changes to the json responce format
   {
     toJSON: {
       transform(doc, ret) {
-        ret.id = ret._id;
-        delete ret._id;
-        delete ret.password;
-        delete ret.__v;
+        ret.id = ret._id; // creating a id property
+        delete ret._id; // delete the _id property
+        delete ret.password; //deleting the pw property
+        delete ret.__v; //deleting the __v property that comes up with mongodb
       }
     }
   });
