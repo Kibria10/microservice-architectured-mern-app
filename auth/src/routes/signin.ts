@@ -6,6 +6,7 @@ import { BadRequestError } from '../errors/bad-request-error';
 import { Password } from '../services/password';
 import jwt from 'jsonwebtoken';
 import { currentUser } from '../middlewares/current-user';
+import { alreadySignedIn } from '../middlewares/already-signed-in';
 const router = express.Router();
 
 router.post(
@@ -21,6 +22,7 @@ router.post(
     ],
     validateRequest,
     currentUser,
+    alreadySignedIn,
     async (req: Request, res: Response) => {
         const { email, password } = req.body;
 
