@@ -43,7 +43,7 @@ router.post(
             id: existingUser.id,
             email: existingUser.email,
             // password: existingUser.password
-        }, process.env.JWT_KEY!);
+        }, process.env.JWT_KEY2!);
 
         //store jwt on session object
         req.session = {
