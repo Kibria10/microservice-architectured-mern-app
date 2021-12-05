@@ -20,7 +20,7 @@ declare global {
         }
     }
 }
-
+//**************************************************************//
 //a middleware to tell other services the state of our current user
 //who is this user and if not logged in then null.
 
