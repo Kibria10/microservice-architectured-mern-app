@@ -1,5 +1,5 @@
 
-import { CustomError } from "../errors/custom-error";
+import { CustomError } from "./custom-error";
 export class AlreadySignedInError extends CustomError {
     statusCode = 401;
     constructor() {

@@ -6,7 +6,7 @@ import { BadRequestError } from '../errors/bad-request-error';
 import { Password } from '../services/password';
 import jwt from 'jsonwebtoken';
 import { currentUser } from '../middlewares/current-user';
-import { alreadySignedIn } from '../middlewares/already-signed-in';
+import { AlreadySignedInError } from '../errors/already-signed-in-error';
 const router = express.Router();
 
 router.post(
@@ -22,10 +22,12 @@ router.post(
     ],
     validateRequest,
     currentUser,
-    alreadySignedIn,
+    // alreadySignedIn,
     async (req: Request, res: Response) => {
         const { email, password } = req.body;
-
+        if (req.currentUser) {
+            throw new AlreadySignedInError();
+        }
         const existingUser = await User.findOne({ email });
         if (!existingUser) {
             throw new BadRequestError('Invalid Credentials');
