@@ -4,9 +4,12 @@ import jwt from 'jsonwebtoken';
 import { User } from '../models/user';
 import { BadRequestError } from '../errors/bad-request-error';
 import { validateRequest } from '../middlewares/validate-request';
+const mailgun = require("mailgun-js");
+const DOMAIN = 'sandbox1ba77257c90e414d9bec6231e1b49472.mailgun.org';
+const api_key: string = '3587925de9e0d95b46bbd50fcecdd7a8-7005f37e-afb4d07c';
+const mg = mailgun({ apiKey: api_key, domain: DOMAIN });
 
 const router = express.Router();
-
 router.post(
   '/api/users/signup',
   [
@@ -31,13 +34,30 @@ router.post(
       throw new BadRequestError('Email in use');
     }
 
-    const user = User.build({ email, password });
+    // const userToken = jwt.sign({ email, password }, process.env.JWT_KEY!, { expiresIn: '1d' });
+    // const data = {
+    //   from: 'ShurjoMukhi ERP <noreply@hello.com>',
+    //   to: email,
+    //   subject: 'Account Activation Link [ShurjoERP]',
+    //   html: `<h2>Please click on the given link to activate your account</h2>
+    //          <p>https://ticketing.dev/authentication/activate/${userToken}</p>`
+    // };
+    // mg.messages().send(data, function (error: Error, body: Body) {
+    //   if (error) {
+    //     throw new BadRequestError(error.message);
+    //   }
+    //   console.log(body);
+    //   return res.json({ message: 'An email has been sent to your account. Use the token key to activate your account.' });
+    // });
+
+    const user = User.build({ email, password, verified: false, });
     await user.save();
     //Generate JWT
 
     const userJwt = jwt.sign({
       id: user.id,
       email: user.email,
+      verified: user.verified,
       // password: user.password
     }, process.env.JWT_KEY!);
 
