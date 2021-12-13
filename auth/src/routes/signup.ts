@@ -24,7 +24,7 @@ router.post(
   validateRequest,
   async (req: Request, res: Response) => {
 
-    const { email, password } = req.body;
+    const { email, password, name, dob, role, department, address } = req.body;
 
     const existingUser = await User.findOne({ email });
 
@@ -48,14 +48,14 @@ router.post(
     //   return res.json({ message: 'An email has been sent to your account. Use the token key to activate your account.' });
     // });
 
-    const user = User.build({ email, password, verified: false, });
+    const user = User.build({ email, password, name, role, department });
+    console.log(user);
     await user.save();
     //Generate JWT
 
     const userJwt = jwt.sign({
       id: user.id,
       email: user.email,
-      verified: user.verified,
       // password: user.password
     }, process.env.JWT_KEY!);
 
