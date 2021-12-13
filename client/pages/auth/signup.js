@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown'
 
 export default () => {
   const [email, setEmail] = useState('');
@@ -30,7 +32,7 @@ export default () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <h1>Sign Up</h1>
+      <h1><center><i>Shurjo ERP Registration Form</i></center></h1>
       <div className="form-group">
         <label>Email Address</label>
         <input
@@ -57,23 +59,30 @@ export default () => {
           className="form-control"
         />
       </div>
+      <br></br>
       <div className="form-group">
-        <label>Role</label>
-        <input
-          value={role}
-          onChange={e => setRole(e.target.value)}
-          type="text"
-          className="form-control"
-        />
+      <label>Role</label>
+      <DropdownButton title="Select Role"
+               onSelect={e=>setRole(e)}>
+              <Dropdown.Item eventKey="Senior HR">Senior HR</Dropdown.Item>
+              <Dropdown.Item eventKey="Senior Accountant">Senior Accountant</Dropdown.Item>
+              <Dropdown.Item eventKey="Jr. Software Developer">Jr. Software Developer</Dropdown.Item>
+              <Dropdown.Item eventKey="Sr. Software Developer">Sr. Software Developer</Dropdown.Item>
+              <Dropdown.Item eventKey="Product Manager">Product Manager</Dropdown.Item>
+              <Dropdown.Item eventKey="Intern">Intern</Dropdown.Item>
+      </DropdownButton>
       </div>
+      <br></br>
       <div className="form-group">
         <label>Department</label>
-        <input
-          value={department}
-          onChange={e => setDepartment(e.target.value)}
-          type="text"
-          className="form-control"
-        />
+        <DropdownButton title="Select Department"
+               onSelect={e=>setDepartment(e)}>
+              <Dropdown.Item eventKey="HR">HR</Dropdown.Item>
+              <Dropdown.Item eventKey="Accounting">Accounting</Dropdown.Item>
+              <Dropdown.Item eventKey="Technology">Technology</Dropdown.Item>
+              <Dropdown.Item eventKey="Sales">Sales</Dropdown.Item>
+        </DropdownButton>
+
       </div>
       {errors.length > 0 && (
         <div className="alert alert-danger">
@@ -85,7 +94,8 @@ export default () => {
           </ul>
         </div>
       )}
-      <button className="btn btn-primary">Sign Up</button>
+      <br></br>
+      <center><button className="btn btn-primary">Sign Up</button> </center>
     </form>
   );
 };

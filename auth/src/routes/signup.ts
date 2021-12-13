@@ -4,10 +4,10 @@ import jwt from 'jsonwebtoken';
 import { User } from '../models/user';
 import { BadRequestError } from '../errors/bad-request-error';
 import { validateRequest } from '../middlewares/validate-request';
-const mailgun = require("mailgun-js");
-const DOMAIN = 'sandbox1ba77257c90e414d9bec6231e1b49472.mailgun.org';
-const api_key: string = '3587925de9e0d95b46bbd50fcecdd7a8-7005f37e-afb4d07c';
-const mg = mailgun({ apiKey: api_key, domain: DOMAIN });
+// const mailgun = require("mailgun-js");
+// const DOMAIN = 'sandbox1ba77257c90e414d9bec6231e1b49472.mailgun.org';
+// const api_key: string = '3587925de9e0d95b46bbd50fcecdd7a8-7005f37e-afb4d07c';
+// const mg = mailgun({ apiKey: api_key, domain: DOMAIN });
 
 const router = express.Router();
 router.post(
@@ -18,13 +18,17 @@ router.post(
       .withMessage('Email must be valid'),
     body('password')
       .trim()
-      .isLength({ min: 4, max: 20 })
-      .withMessage('Password must be between 4 and 20 characters')
+      .isLength({ min: 6, max: 20 })
+      .withMessage('Password must be between 6 and 20 characters'),
+    body('name').notEmpty().withMessage('Name field must be filled up'),
+    body('role').notEmpty().withMessage('Role field must be filled up'),
+    body('department').notEmpty().withMessage('Department field must be filled up'),
+
   ],
   validateRequest,
   async (req: Request, res: Response) => {
 
-    const { email, password, name, dob, role, department, address } = req.body;
+    const { email, password, name, role, department } = req.body;
 
     const existingUser = await User.findOne({ email });
 
