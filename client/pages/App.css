@@ -1,11 +1,12 @@
 body {
-  background-color: rgb(157, 218, 89);
+  background-color: rgb(216, 247, 180);
   background: linear-gradient(
     90deg,
-    rgba(157, 218, 89, 1) 11%,
-    rgba(136, 215, 124, 1) 50%,
-    rgba(49, 213, 208, 1) 93%,
-    rgba(0, 212, 255, 1) 100%
+    rgba(216, 247, 180, 1) 10%,
+    rgba(246, 246, 169, 1) 29%,
+    rgba(237, 204, 250, 1) 49%,
+    rgba(176, 255, 252, 1) 76%,
+    rgba(221, 242, 246, 1) 100%
   );
 }
 body,
@@ -16,4 +17,11 @@ h4,
 h5,
 h6 {
   font-family: Arial, Helvetica, sans-serif;
+}
+form {
+  width: 100%;
+  padding: 20px 30px;
+  margin: 15px 0;
+  display: inline-block;
+  box-sizing: border-box;
 }

@@ -39,6 +39,8 @@ router.post(
         if (!passwordsMatch) {
             throw new BadRequestError('Invalid Credentials');
         }
+        const role = await existingUser.role;
+        console.log("ROLE:" + role);
         // if (!existingUser.verified) {
         //     throw new BadRequestError('Email Not Verified');
         // }
@@ -48,6 +50,7 @@ router.post(
         const userJwt = jwt.sign({
             id: existingUser.id,
             email: existingUser.email,
+            role: existingUser.role,
             // password: existingUser.password
         }, process.env.JWT_KEY2!);
 

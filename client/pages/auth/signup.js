@@ -30,10 +30,12 @@ export default () => {
   return (
     <form onSubmit={onSubmit}>
     <div className='background-color'>
-    <h1><center><b>Shurjo ERP Registration Form</b></center></h1>
+    <h2><center><b>Shurjo ERP Employee Registration Form</b></center></h2>
+    <h3><center>(HR Interface)</center></h3>
     <div className="form-group">
       <label>Email Address</label>
       <input
+        placeholder='new-employee@shurjomukhi.com'
         value={email}
         onChange={e => setEmail(e.target.value)}
         className="form-control"
@@ -42,6 +44,7 @@ export default () => {
     <div className="form-group">
       <label>Password</label>
       <input
+        placeholder='Enter Password'
         value={password}
         onChange={e => setPassword(e.target.value)}
         type="password"
@@ -51,6 +54,7 @@ export default () => {
     <div className="form-group">
       <label>Name</label>
       <input
+        placeholder='Enter Employee Full Name'
         value={name}
         onChange={e => setName(e.target.value)}
         type="text"
@@ -59,8 +63,8 @@ export default () => {
     </div>
     <br></br>
     <div className="form-group">
-    <label>Role</label>
-    <DropdownButton title="Select Role"
+    <label>Designation</label>
+    <DropdownButton title="Select Designation"
              onSelect={e=>setRole(e)}>
             <Dropdown.Item eventKey="Senior HR">Senior HR</Dropdown.Item>
             <Dropdown.Item eventKey="Senior Accountant">Senior Accountant</Dropdown.Item>
