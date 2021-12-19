@@ -1,0 +1,19 @@
+body {
+  background-color: rgb(157, 218, 89);
+  background: linear-gradient(
+    90deg,
+    rgba(157, 218, 89, 1) 11%,
+    rgba(136, 215, 124, 1) 50%,
+    rgba(49, 213, 208, 1) 93%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Arial, Helvetica, sans-serif;
+}

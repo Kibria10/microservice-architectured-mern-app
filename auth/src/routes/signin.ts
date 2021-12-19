@@ -14,6 +14,8 @@ router.post(
     [
         body('email')
             .isEmail()
+            .toLowerCase()
+            .contains('@shurjomukhi', { ignoreCase: true })
             .withMessage('Email Must Be Valid'),
         body('password')
             .trim()

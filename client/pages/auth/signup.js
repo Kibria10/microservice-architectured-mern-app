@@ -3,7 +3,6 @@ import Router from 'next/router';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import useRequest from '../../hooks/use-request';
-
 export default () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -30,7 +29,8 @@ export default () => {
 
   return (
     <form onSubmit={onSubmit}>
-    <h1><center><i>Shurjo ERP Registration Form</i></center></h1>
+    <div className='background-color'>
+    <h1><center><b>Shurjo ERP Registration Form</b></center></h1>
     <div className="form-group">
       <label>Email Address</label>
       <input
@@ -86,6 +86,7 @@ export default () => {
       {errors}
       <br></br>
       <center><button className="btn btn-primary">Sign Up</button></center>
+      </div>
     </form>
   );
 };
