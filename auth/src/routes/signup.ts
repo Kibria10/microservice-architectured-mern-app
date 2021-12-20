@@ -4,10 +4,10 @@ import jwt from 'jsonwebtoken';
 import { User } from '../models/user';
 import { BadRequestError } from '../errors/bad-request-error';
 import { validateRequest } from '../middlewares/validate-request';
-const mailgun = require("mailgun-js");
-const DOMAIN = 'sandbox1ba77257c90e414d9bec6231e1b49472.mailgun.org';
-const api_key: string = '3587925de9e0d95b46bbd50fcecdd7a8-7005f37e-afb4d07c';
-const mg = mailgun({ apiKey: api_key, domain: DOMAIN });
+// const mailgun = require("mailgun-js");
+// const DOMAIN = 'sandbox1ba77257c90e414d9bec6231e1b49472.mailgun.org';
+// const api_key: string = '3587925de9e0d95b46bbd50fcecdd7a8-7005f37e-afb4d07c';
+// const mg = mailgun({ apiKey: api_key, domain: DOMAIN });
 
 const router = express.Router();
 router.post(
@@ -15,22 +15,26 @@ router.post(
   [
     body('email')
       .isEmail()
+      .toLowerCase()
+      .contains('@shurjomukhi', { ignoreCase: true })
       .withMessage('Email must be valid'),
     body('password')
       .trim()
-      .isLength({ min: 4, max: 20 })
-      .withMessage('Password must be between 4 and 20 characters')
+      .isLength({ min: 6, max: 20 })
+      .withMessage('Password must be between 6 and 20 characters'),
+    body('name').notEmpty().withMessage('Name field must be filled up'),
+    body('role').notEmpty().withMessage('Role field must be filled up'),
+    body('department').notEmpty().withMessage('Department field must be filled up'),
+
   ],
   validateRequest,
   async (req: Request, res: Response) => {
 
-    const { email, password } = req.body;
+    const { email, password, name, role, department } = req.body;
 
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
-      //   console.log('Email in use');
-      //   return res.send({});
       throw new BadRequestError('Email in use');
     }
 
@@ -50,14 +54,14 @@ router.post(
     //   return res.json({ message: 'An email has been sent to your account. Use the token key to activate your account.' });
     // });
 
-    const user = User.build({ email, password, verified: false, });
+    const user = User.build({ email, password, name, role, department });
+    console.log(user);
     await user.save();
     //Generate JWT
 
     const userJwt = jwt.sign({
       id: user.id,
       email: user.email,
-      verified: user.verified,
       // password: user.password
     }, process.env.JWT_KEY!);
 

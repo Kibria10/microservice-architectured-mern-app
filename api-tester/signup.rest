@@ -4,6 +4,9 @@ Content-Type: application/json
 
 
 {
-    "email": "junakkibria56@gmail.com",
-    "password": "12345"
+    "email": "junakkibria5612@shurjomukhi.com",
+    "password": "1234567",
+    "name": "Maharab Kibria",
+    "role": "Intern",
+    "department": "Technology"
 }

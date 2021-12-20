@@ -14,6 +14,8 @@ router.post(
     [
         body('email')
             .isEmail()
+            .toLowerCase()
+            .contains('@shurjomukhi', { ignoreCase: true })
             .withMessage('Email Must Be Valid'),
         body('password')
             .trim()
@@ -37,6 +39,8 @@ router.post(
         if (!passwordsMatch) {
             throw new BadRequestError('Invalid Credentials');
         }
+        const role = await existingUser.role;
+        console.log("ROLE:" + role);
         // if (!existingUser.verified) {
         //     throw new BadRequestError('Email Not Verified');
         // }
@@ -46,7 +50,7 @@ router.post(
         const userJwt = jwt.sign({
             id: existingUser.id,
             email: existingUser.email,
-            verified: existingUser.verified,
+            role: existingUser.role,
             // password: existingUser.password
         }, process.env.JWT_KEY2!);
 
