@@ -19,7 +19,7 @@ export default () => {
       role,
       department
     },
-    onSuccess: () => Router.push('/')
+    onSuccess: () => Router.push('/auth/signin')
   });
 
   const onSubmit = async event => {
@@ -90,6 +90,8 @@ export default () => {
       {errors}
       <br></br>
       <center><button className="btn btn-primary">Sign Up</button></center>
+      <br></br>
+      <center><p>If you are already a user, then click here to</p><a href="http://ticketing.dev/auth/signin">Sign In</a></center>
       </div>
     </form>
   );
