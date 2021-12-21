@@ -2,9 +2,10 @@ import buildClient from '../api/build-client';
 
 const LandingPage = ({ currentUser }) => {
   return currentUser ? (
-    <h1>You are signed in.. <p><a href="http://ticketing.dev/auth/signout">Sign Out</a></p></h1>
-  ) : (
-    <h1>You are NOT signed in.. <p><a href="http://ticketing.dev/auth/signin">Sign In</a></p></h1>
+    <h3>You are signed in.</h3> )
+     : 
+     (
+    <h3>You are NOT signed in</h3>
   );
 };
 
