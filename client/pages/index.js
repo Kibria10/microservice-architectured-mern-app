@@ -2,7 +2,7 @@ import buildClient from '../api/build-client';
 
 const LandingPage = ({ currentUser }) => {
   return currentUser ? (
-    <h3>You are signed in.</h3> )
+    <h3>Welcome, {currentUser.email} - {currentUser.role}</h3> )
      : 
      (
     <h3>You are NOT signed in</h3>
