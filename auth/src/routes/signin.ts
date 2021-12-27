@@ -1,12 +1,12 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
-import { validateRequest } from '../middlewares/validate-request';
+import { validateRequest } from '@kibria10/common';
 import { User } from '../models/user';
-import { BadRequestError } from '../errors/bad-request-error';
+import { BadRequestError } from '@kibria10/common';
 import { Password } from '../services/password';
 import jwt from 'jsonwebtoken';
-import { currentUser } from '../middlewares/current-user';
-import { AlreadySignedInError } from '../errors/already-signed-in';
+import { currentUser } from '@kibria10/common';
+import { AlreadySignedInError } from '@kibria10/common';
 const router = express.Router();
 
 router.post(

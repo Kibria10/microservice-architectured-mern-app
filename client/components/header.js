@@ -20,7 +20,7 @@ export default ({ currentUser }) => {
   return (
     <nav className="navbar">
       <Link href="/">
-        <h2 className="navbar-brand">ShurjoERP</h2>
+        <h3><b>ShurjoERP</b></h3>
       </Link>
 
       <div className="d-flex justify-content-end">
