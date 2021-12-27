@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crud-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crud
+  template:
+    metadata:
+      labels:
+        app: crud
+    spec:
+      containers:
+        - name: crud
+          image: junakkibria/crud
+          env:
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+            - name: JWT_KEY2
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret2
+                  key: JWT_KEY2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: crud-srv
+spec:
+  selector:
+    app: crud
+  ports:
+    - name: crud
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

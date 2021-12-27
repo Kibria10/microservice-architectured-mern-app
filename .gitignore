@@ -1,5 +1,5 @@
 auth/node_modules
 client/node_modules
 client/.next
-tickets
 common
+crud/node_modules
