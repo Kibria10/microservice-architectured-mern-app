@@ -20,13 +20,13 @@ const start = async () => {
             // Mongoose 6 always behaves as if useNewUrlParser, useUnifiedTopology,
             // and useCreateIndex are true, and useFindAndModify is false. Please remove these options from your code.
         );
-        console.log('Connected to MongoDb');
+        console.log('Connected to MongoDb/auth-mongo-srv');
     } catch (err) {
         console.error(err);
     }
 
     app.listen(3000, () => {
-        console.log('Listening on port 3000!!!!!!!!');
+        console.log('Listening on port 3000!');
     });
 };
 

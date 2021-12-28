@@ -16,6 +16,8 @@ spec:
         - name: crud
           image: junakkibria/crud
           env:
+            - name: MONGO_URI
+              value: "mongodb://crud-mongo-srv:27017/crud"
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:

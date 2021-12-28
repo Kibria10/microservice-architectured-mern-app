@@ -7,9 +7,12 @@ const start = async () => {
     if (!process.env.JWT_KEY2) {
         throw new Error('JWT_KEY2 must be defined(/signin)');
     }
+    if (!process.env.MONGO_URI) {
+        throw new Error('MONGO_URI must be defined');
+    }
 
     try {
-        await mongoose.connect('mongodb://auth-mongo-srv:27017/auth'
+        await mongoose.connect(process.env.MONGO_URI
             // , {
             //     useNewUrlParser: true,
             //     useUnifiedTopology: true,
@@ -20,13 +23,13 @@ const start = async () => {
             // Mongoose 6 always behaves as if useNewUrlParser, useUnifiedTopology,
             // and useCreateIndex are true, and useFindAndModify is false. Please remove these options from your code.
         );
-        console.log('Connected to MongoDb');
+        console.log('Connected to MongoDb/crud-mongo-srv');
     } catch (err) {
         console.error(err);
     }
 
     app.listen(3000, () => {
-        console.log('Listening on port 3000!!!!!!!!');
+        console.log('Listening on port 3000!(CRUD)');
     });
 };
 
