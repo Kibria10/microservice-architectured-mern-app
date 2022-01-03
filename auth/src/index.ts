@@ -12,7 +12,7 @@ const start = async () => {
         await mongoose.connect('mongodb://auth-mongo-srv:27017/auth'
             // , {
             //     useNewUrlParser: true,
-            //     useUnifiedTopology: true,
+            //     useUnifiedTopology: true, 
             //     // useCreateIndex: true
             // } as ConnectOptions
 

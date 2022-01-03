@@ -4,7 +4,15 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "ts-node-dev src/index.ts"
+    "start": "ts-node-dev src/index.ts",
+    "test": "jest --watchAll --no-cache"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./src/test/setup.ts"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -15,8 +23,6 @@
     "@types/express": "^4.17.13",
     "@types/jsonwebtoken": "^8.5.6",
     "@types/mongoose": "^5.11.97",
-    "@types/nodemailer": "^6.4.4",
-    "@types/uuid": "^8.3.3",
     "cookie-session": "^1.4.0",
     "crypto": "^1.0.1",
     "express": "^4.17.1",
@@ -24,10 +30,15 @@
     "express-validator": "^6.13.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.13",
-    "nodemailer": "^6.7.2",
-    "ts-mailgun": "^0.5.1",
     "ts-node-dev": "^1.1.8",
-    "typescript": "^4.5.2",
-    "uuid": "^8.3.2"
+    "typescript": "^4.5.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "@types/supertest": "^2.0.11",
+    "jest": "^27.4.5",
+    "mongodb-memory-server": "^8.1.0",
+    "supertest": "^6.1.6",
+    "ts-jest": "^27.1.2"
   }
 }
