@@ -2,4 +2,4 @@ auth/node_modules
 client/node_modules
 client/.next
 common
-crud/node_modules
+tickets/node_modules

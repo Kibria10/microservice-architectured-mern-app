@@ -3,23 +3,27 @@ import 'express-async-errors';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
 import { errorHandler, NotFoundError, currentUser } from '@kibria10/common';
-import { createCrudRouter } from './routes/new';
+import { createTicketRouter } from './routes/new';
+import { showTicketRouter } from './routes/show';
+import { indexTicketRouter } from './routes/index';
 
 const app = express();
 app.set('trust proxy', true);
 app.use(json());
 app.use(
-    cookieSession({
-        signed: false,
-        secure: true
-    })
+  cookieSession({
+    signed: false,
+    secure: process.env.NODE_ENV !== 'test',
+  })
 );
-
 app.use(currentUser);
-app.use(createCrudRouter);
+
+app.use(createTicketRouter);
+app.use(showTicketRouter);
+app.use(indexTicketRouter);
 
 app.all('*', async (req, res) => {
-    throw new NotFoundError();
+  throw new NotFoundError();
 });
 
 app.use(errorHandler);
