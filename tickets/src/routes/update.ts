@@ -5,7 +5,7 @@ import {
   NotFoundError,
   requireAuth,
   NotAuthorizedError,
-} from '@sgtickets/common';
+} from '@kibria10/common';
 import { Ticket } from '../models/ticket';
 
 const router = express.Router();
