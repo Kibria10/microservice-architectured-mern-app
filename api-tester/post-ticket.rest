@@ -1,0 +1,9 @@
+###
+POST https://ticketing.dev/api/tickets
+Content-Type: application/json
+
+
+{
+    "title": "artcell concert",
+    "price": "99"
+}

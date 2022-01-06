@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: crud-depl
+  name: tickets-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: crud
+      app: tickets
   template:
     metadata:
       labels:
-        app: crud
+        app: tickets
     spec:
       containers:
-        - name: crud
-          image: junakkibria/crud
+        - name: tickets
+          image: junakkibria/tickets
           env:
             - name: MONGO_URI
-              value: "mongodb://crud-mongo-srv:27017/crud"
+              value: "mongodb://tickets-mongo-srv:27017/tickets"
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
@@ -32,12 +32,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: crud-srv
+  name: tickets-srv
 spec:
   selector:
-    app: crud
+    app: tickets
   ports:
-    - name: crud
+    - name: tickets
       protocol: TCP
       port: 3000
       targetPort: 3000

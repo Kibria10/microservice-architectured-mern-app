@@ -18,13 +18,13 @@ const start = async () => {
       //   useCreateIndex: true,
       // }
     );
-    console.log('Connected to MongoDb');
+    console.log('Connected to MongoDb/tickets-mongo-srv');
   } catch (err) {
     console.error(err);
   }
 
   app.listen(3000, () => {
-    console.log('Listening on port 3000!!!!!!!!');
+    console.log('Listening on port 3000!');
   });
 };
 

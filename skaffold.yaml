@@ -24,8 +24,8 @@ build:
     #     manual:
     #       - src: "**/*.js"
     #         dest: .
-    - image: junakkibria/crud
-      context: crud
+    - image: junakkibria/tickets
+      context: tickets
       docker:
         dockerfile: Dockerfile
       sync:

@@ -1,0 +1,10 @@
+###
+PUT https://ticketing.dev/api/tickets/61d6bc2bc9b64ab0a7491a11
+
+Content-Type: application/json
+
+
+{
+    "title": "Bon Jovi Concert",
+    "price": "999"
+}

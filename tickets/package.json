@@ -18,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@kibria10/common": "^1.0.5",
+    "@kibria10/common": "^1.0.8",
     "@sgtickets/common": "^1.0.12",
     "@types/cookie-session": "^2.0.43",
     "@types/express": "^4.17.13",

@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: crud-mongo-depl
+  name: tickets-mongo-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: crud-mongo
+      app: tickets-mongo
   template:
     metadata:
       labels:
-        app: crud-mongo
+        app: tickets-mongo
     spec:
       containers:
-        - name: crud-mongo
+        - name: tickets-mongo
           image: mongo
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: crud-mongo-srv
+  name: tickets-mongo-srv
 spec:
   selector:
-    app: crud-mongo
+    app: tickets-mongo
   ports:
     - name: db
       protocol: TCP
