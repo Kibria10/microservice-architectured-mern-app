@@ -3,3 +3,4 @@ client/node_modules
 client/.next
 common
 tickets/node_modules
+nats-test/node_modules
