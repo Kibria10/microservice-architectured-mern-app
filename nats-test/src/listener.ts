@@ -12,6 +12,11 @@ const stan = nats.connect('ticketing', randomBytes(4).toString('hex'), {
 
 stan.on('connect', () => {
     console.log('Listener connected to NATS');
+
+    stan.on('close', () => {
+        console.log('NATS connection closed.');
+        process.exit();
+    });
     const options = stan.subscriptionOptions()
         .setManualAckMode(true); // setting manual acknowledgement mode to true means that 
     //node-nat-streaming server will not be automatically done after sending the event.
@@ -32,3 +37,6 @@ stan.on('connect', () => {
         msg.ack(); // this means we have acknowledged the event and the setManualAckMode will get satisfied.
     });
 });
+
+process.on('SIGINT', () => stan.close());
+process.on('SIGTERM', () => stan.close());

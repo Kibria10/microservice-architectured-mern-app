@@ -1,0 +1,30 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: nats-mongo-depl
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: nats-mongo
+#   template:
+#     metadata:
+#       labels:
+#         app: nats-mongo
+#     spec:
+#       containers:
+#         - name: nats-mongo
+#           image: mongo
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: nats-mongo-srv
+# spec:
+#   selector:
+#     app: nats-mongo
+#   ports:
+#     - name: db
+#       protocol: TCP
+#       port: 27017
+#       targetPort: 27017
